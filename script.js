@@ -85,7 +85,9 @@ const lockMessage = document.getElementById("lock-message");
 const stageCounter = document.getElementById("stage-counter");
 const monitorDigit = document.getElementById("monitor-digit");
 const buttonsRow = document.getElementById("buttons-row");
-const moduleMessage = document.getElementById("module-message");
+const feedback = document.getElementById("feedback");
+const feedbackIcon = document.getElementById("feedback-icon");
+const feedbackText = document.getElementById("feedback-text");
 
 function showScreen(screen) {
   [lockScreen, moduleScreen, successScreen].forEach((s) => s.classList.remove("active"));
@@ -96,7 +98,7 @@ function startScenario(name) {
   currentScenario = SCENARIOS[name];
   stageIndex = 0;
   history = {};
-  moduleMessage.textContent = "";
+  hideFeedback();
   showScreen(moduleScreen);
   renderStage();
 }
@@ -116,6 +118,18 @@ function renderStage() {
   });
 }
 
+function showFeedback(success, text) {
+  feedback.classList.remove("success", "fail");
+  feedback.classList.add(success ? "success" : "fail");
+  feedbackIcon.textContent = success ? "✓" : "✗";
+  feedbackText.textContent = text;
+  moduleScreen.classList.add("feedback-mode");
+}
+
+function hideFeedback() {
+  moduleScreen.classList.remove("feedback-mode");
+}
+
 function handlePress(position, label) {
   const stage = currentScenario[stageIndex];
   const correct = correctPosition(stageIndex + 1, stage.monitor, stage.labels, history);
@@ -123,29 +137,26 @@ function handlePress(position, label) {
   if (position === correct) {
     history[stageIndex + 1] = { position, label };
     stageIndex++;
-    moduleMessage.textContent = "";
-    moduleMessage.classList.remove("err");
+    const finished = stageIndex >= currentScenario.length;
 
-    if (stageIndex >= currentScenario.length) {
-      showScreen(successScreen);
-    } else {
-      renderStage();
-    }
+    showFeedback(true, finished ? "MÓDULO COMPLETO" : "CORRECTO");
+    setTimeout(() => {
+      hideFeedback();
+      if (finished) {
+        showScreen(successScreen);
+      } else {
+        renderStage();
+      }
+    }, 650);
   } else {
-    const pressedBtn = buttonsRow.children[position - 1];
-    pressedBtn.classList.add("wrong");
-    setTimeout(() => pressedBtn.classList.remove("wrong"), 400);
-
-    moduleMessage.textContent = "ERROR — REINICIANDO MÓDULO";
-    moduleMessage.classList.add("err");
+    showFeedback(false, "INCORRECTO — REINICIANDO");
 
     stageIndex = 0;
     history = {};
     setTimeout(() => {
-      moduleMessage.textContent = "";
-      moduleMessage.classList.remove("err");
+      hideFeedback();
       renderStage();
-    }, 700);
+    }, 750);
   }
 }
 

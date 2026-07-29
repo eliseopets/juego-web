@@ -220,25 +220,49 @@ html, body {
   box-shadow: 0 0 16px var(--fg);
 }
 
-.mem-button.wrong {
-  animation: wrongFlash 0.4s;
+#module-screen.feedback-mode .monitor-box,
+#module-screen.feedback-mode .buttons-row {
+  display: none;
 }
 
-@keyframes wrongFlash {
-  0%, 100% { border-color: var(--fg); color: var(--fg); }
-  50% { border-color: var(--err); color: var(--err); box-shadow: 0 0 16px var(--err); }
+.feedback {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
 }
 
-.module-message {
-  min-height: 1.4em;
-  margin-top: 28px;
-  letter-spacing: 2px;
-  font-size: clamp(12px, 3.2vw, 15px);
+#module-screen.feedback-mode .feedback {
+  display: flex;
+  animation: feedbackPop 0.3s ease-out;
 }
 
-.module-message.err {
+.feedback-icon {
+  font-size: clamp(70px, 24vw, 120px);
+  line-height: 1;
+}
+
+.feedback-text {
+  letter-spacing: 3px;
+  font-size: clamp(13px, 3.6vw, 17px);
+}
+
+.feedback.success .feedback-icon,
+.feedback.success .feedback-text {
+  color: var(--fg);
+  text-shadow: 0 0 10px var(--fg), 0 0 26px var(--fg);
+}
+
+.feedback.fail .feedback-icon,
+.feedback.fail .feedback-text {
   color: var(--err);
-  text-shadow: 0 0 8px var(--err);
+  text-shadow: 0 0 10px var(--err), 0 0 26px var(--err);
+}
+
+@keyframes feedbackPop {
+  0% { transform: scale(0.55); opacity: 0; }
+  65% { transform: scale(1.1); opacity: 1; }
+  100% { transform: scale(1); }
 }
 
 .success-art {
