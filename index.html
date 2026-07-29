@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<title>:: MEMORIA ::</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="crt">
+  <div class="scanlines"></div>
+  <div class="noise"></div>
+
+  <!-- Pantalla de bloqueo -->
+  <section id="lock-screen" class="screen active">
+    <pre class="ascii-art">
+▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
+▓                     ▓
+▓    S I S T E M A    ▓
+▓                     ▓
+▓  B L O Q U E A D O  ▓
+▓                     ▓
+▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
+    </pre>
+    <p class="prompt-label">INGRESE CLAVE DE ACCESO</p>
+    <div class="terminal-line">
+      <span class="chevron">&gt;</span>
+      <input type="text" id="password-input" autocomplete="off" autocapitalize="characters" spellcheck="false" maxlength="12" />
+      <span class="cursor">█</span>
+    </div>
+    <p id="lock-message" class="lock-message"></p>
+  </section>
+
+  <!-- Pantalla del módulo -->
+  <section id="module-screen" class="screen">
+    <div class="module-header">
+      <span>MÓDULO: MEMORIA</span>
+      <span id="stage-counter">ETAPA 1/5</span>
+    </div>
+
+    <div class="monitor-box">
+      <pre id="monitor-digit" class="monitor-digit">0</pre>
+    </div>
+
+    <div id="buttons-row" class="buttons-row"></div>
+
+    <p id="module-message" class="module-message"></p>
+  </section>
+
+  <!-- Pantalla de éxito -->
+  <section id="success-screen" class="screen">
+    <pre class="ascii-art success-art">
+   ___  _  __
+  / _ \| |/ /
+ | | | | ' /
+ | |_| | . \
+  \___/|_|\_\
+
+ MÓDULO DESACTIVADO
+    </pre>
+    <p class="prompt-label">Presione cualquier tecla para reiniciar</p>
+  </section>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
