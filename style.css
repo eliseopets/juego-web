@@ -265,6 +265,43 @@ html, body {
   100% { transform: scale(1); }
 }
 
-.success-art {
-  font-size: clamp(10px, 3vw, 15px);
+.success-text {
+  max-width: 320px;
+  margin: 0 0 40px 0;
+  font-size: clamp(14px, 4vw, 18px);
+  line-height: 1.7;
+  letter-spacing: 0.5px;
+  white-space: pre-line;
+  text-shadow: 0 0 8px var(--fg);
+}
+
+.restart-btn {
+  background: transparent;
+  border: 2px solid var(--fg);
+  color: var(--fg);
+  font-family: var(--font);
+  font-size: clamp(13px, 3.6vw, 16px);
+  letter-spacing: 2px;
+  padding: 14px 28px;
+  border-radius: 6px;
+  text-shadow: 0 0 8px var(--fg);
+  box-shadow: 0 0 10px var(--fg-dim);
+  touch-action: manipulation;
+}
+
+.restart-btn:active {
+  background: var(--fg-dim);
+}
+
+.restart-btn.armed {
+  border-color: var(--err);
+  color: var(--err);
+  text-shadow: 0 0 8px var(--err);
+  box-shadow: 0 0 14px var(--err);
+  animation: armedPulse 1s ease-in-out infinite;
+}
+
+@keyframes armedPulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.55; }
 }
