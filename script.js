@@ -7,28 +7,28 @@
  *   labels:  etiquetas de los botones, de izquierda a derecha (posición 1-4)
  */
 const SCENARIOS = {
-  ALFA: [
+  "2640": [
     { monitor: 3, labels: [2, 4, 1, 3] },
     { monitor: 4, labels: [1, 3, 4, 2] },
     { monitor: 2, labels: [4, 1, 2, 3] },
     { monitor: 1, labels: [3, 2, 4, 1] },
     { monitor: 4, labels: [2, 1, 3, 4] },
   ],
-  BETA: [
+  "1570": [
     { monitor: 1, labels: [4, 2, 1, 3] },
     { monitor: 3, labels: [1, 4, 3, 2] },
     { monitor: 4, labels: [2, 3, 1, 4] },
     { monitor: 2, labels: [3, 1, 4, 2] },
     { monitor: 1, labels: [4, 2, 3, 1] },
   ],
-  GAMMA: [
+  "2215": [
     { monitor: 4, labels: [1, 2, 4, 3] },
     { monitor: 2, labels: [3, 4, 1, 2] },
     { monitor: 1, labels: [2, 1, 3, 4] },
     { monitor: 4, labels: [4, 3, 2, 1] },
     { monitor: 3, labels: [1, 3, 4, 2] },
   ],
-  DELTA: [
+  "2005": [
     { monitor: 2, labels: [3, 1, 2, 4] },
     { monitor: 1, labels: [4, 2, 3, 1] },
     { monitor: 3, labels: [1, 4, 2, 3] },
