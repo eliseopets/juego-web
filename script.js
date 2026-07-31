@@ -127,7 +127,6 @@ const feedback = document.getElementById("feedback");
 const feedbackIcon = document.getElementById("feedback-icon");
 const feedbackText = document.getElementById("feedback-text");
 const successText = document.getElementById("success-text");
-const restartBtn = document.getElementById("restart-btn");
 
 function showScreen(screen) {
   [lockScreen, moduleScreen, successScreen].forEach((s) => s.classList.remove("active"));
@@ -227,33 +226,12 @@ passwordInput.focus();
 
 function showFinalText() {
   successText.textContent = currentFinalText;
-  disarmRestart();
   showScreen(successScreen);
 }
 
-// El reinicio exige doble confirmación: el primer toque arma el botón,
-// el segundo (dentro de la ventana de tiempo) reinicia de verdad.
-let restartArmed = false;
-let restartArmTimeout = null;
-
-function disarmRestart() {
-  restartArmed = false;
-  restartBtn.classList.remove("armed");
-  restartBtn.textContent = "REINICIAR";
-  clearTimeout(restartArmTimeout);
-  restartArmTimeout = null;
-}
-
-restartBtn.addEventListener("click", () => {
-  if (!restartArmed) {
-    restartArmed = true;
-    restartBtn.classList.add("armed");
-    restartBtn.textContent = "¿SEGURO? TOCAR DE NUEVO";
-    restartArmTimeout = setTimeout(disarmRestart, 4000);
-  } else {
-    disarmRestart();
-    resetToLock();
-  }
+successScreen.addEventListener("click", resetToLock);
+document.addEventListener("keydown", (e) => {
+  if (successScreen.classList.contains("active")) resetToLock();
 });
 
 function resetToLock() {
